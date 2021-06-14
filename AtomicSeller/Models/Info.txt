@@ -1,0 +1,9 @@
+﻿
+
+Tools/NuggetPackagemanager/PackagemanagerConsole
+
+Scaffold-DbContext "Server=.\DESKTOP-8ICUFA8;Database=ASTRD;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -f
+
+Scaffold-DbContext "Server=DESKTOP-8ICUFA8;Database=ASTJL;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models\ASTJL" -f
+Scaffold-DbContext "Server=DESKTOP-8ICUFA8;Database=ASTRD;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models\ASTRD" -f
+Scaffold-DbContext "Server=DESKTOP-8ICUFA8;Database=ASTLD;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "Models\ASTLD" -f

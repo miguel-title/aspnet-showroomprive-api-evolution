@@ -1,0 +1,50 @@
+﻿<!--
+model AtomicSeller.ViewModels.JobsRealTimeVMs
+    -->
+
+@using AtomicSeller.Helpers
+@using AtomicSeller.Helpers.Navigation
+@using AtomicSeller.Helpers.Razor
+@using AtomicSeller.Helpers.Razor.HtmlExtensions
+@using AtomicJs.Resources
+
+@{
+    ViewBag.Title = "JobsRealTime";
+    ViewBag.ShowH2 = false;
+    ViewBag.PageCol = HtmlConsts.Dimens.DefaultPageCol;
+    ViewBag.PageColOffset = HtmlConsts.Dimens.DefaultPageColOffset;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <div id="theTable">
+        @Html.Partial("RealTimeTableData")
+    </div>
+
+    <script type="text/javascript">
+        var ajaxLoad = function () {
+            $.ajax({
+                type: "POST", //HTTP POST Method
+                url: "/Jobs/Jobsrealtime", // Controller/View
+                data: { //Passing data
+                }
+            }).success(function () {
+                $(".table").load("/Jobs/RealTimeTableData");
+            });
+        };
+        $(document).ready(function () {
+            ajaxLoad();
+            setInterval(function () {
+                ajaxLoad();
+            }, 4000);
+        });
+    </script>
+</body>
+</html>

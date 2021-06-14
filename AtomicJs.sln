@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtomicJs", "AtomicSeller\AtomicJs.csproj", "{AC738B81-EEEF-46FC-B5A2-A86F0A21583A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC738B81-EEEF-46FC-B5A2-A86F0A21583A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC738B81-EEEF-46FC-B5A2-A86F0A21583A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC738B81-EEEF-46FC-B5A2-A86F0A21583A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC738B81-EEEF-46FC-B5A2-A86F0A21583A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38E41417-8642-483C-B59B-47A39A442AEC}
+	EndGlobalSection
+EndGlobal

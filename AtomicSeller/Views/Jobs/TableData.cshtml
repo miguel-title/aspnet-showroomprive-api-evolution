@@ -1,0 +1,82 @@
+﻿@model AtomicSeller.ViewModels.JobLogVMs
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TableData</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                JOB NAME
+            </th>
+            <th>
+                JOBLOG DATE START
+            </th>
+            <th>
+                JOBLOG DATE END
+            </th>
+            <th>
+                TENANT ID
+            </th>
+            <th>
+                JOB ID
+            </th>
+            <th>
+                JOB STATUS
+            </th>
+            <th>
+                LOG ID
+            </th>
+            <th style="display:none;">
+                JOBLOG ERROR MESSAGE
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Atomicjoblogs)
+        {
+            <tr>
+                <td data-attr="name" data-value="@item.JobName">
+                    @item.JobName
+                </td>
+                <td data-attr="start" data-value="@item.DateStart">
+                    @item.DateStart
+                </td>
+                <td data-attr="end" data-value="@item.DateEnd">
+                    @item.DateEnd
+                </td>
+                <td data-attr="tenantid" data-value="@item.TenantId">
+                    @item.TenantId
+                </td>
+                <td data-attr="jobid" data-value="@item.JobId">
+                    @item.JobId
+                </td>
+                <td data-attr="returncode" data-value="@item.ReturnCode">
+                    @item.ReturnCode
+                </td>
+                <td data-attr="logid" data-value="@item.LogId">
+                    @item.LogId
+                </td>
+                <td style="display:none;" data-attr="Error_Msg" data-value="@item.ErrorMessage"></td>
+                <td>
+                    <button class="btn btn-primary btn-view"
+                            data-toggle="modal"
+                            title="Edit"
+                            data-target="#myModal">
+                        <i class="mdi mdi-file-pdf-box"></i>View
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

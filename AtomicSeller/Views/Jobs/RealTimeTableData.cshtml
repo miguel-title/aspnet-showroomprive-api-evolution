@@ -1,0 +1,92 @@
+﻿@model AtomicSeller.ViewModels.JobsRealTimeVMs
+
+@{
+    <!-- Layout = null;-->
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TableData</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                JOBNAME
+            </th>
+            <th>
+                START
+            </th>
+            <th>
+                END
+            </th>
+            <th>
+                CATEGORY
+            </th>
+            <th>
+                TENANTID
+            </th>
+            <th>
+                JOBKEY
+            </th>
+            <th>
+                previousFireTime
+            </th>
+            <th>
+                nextFireTime
+            </th>
+        </tr>
+        @if (Model.jobsRealTime != null)
+        {
+            foreach (var item in Model.jobsRealTime)
+            {
+            <tr>
+                <td data-attr="jobname" data-value="@item.JobName">
+                    @Html.DisplayFor(modelItem => item.JobName)
+                </td>
+                <td data-attr="datestart" data-value="@item.DateStart">
+                    @Html.DisplayFor(modelItem => item.DateStart)
+                </td>
+                <td data-attr="dateend" data-value="@item.DateEnd">
+                    @Html.DisplayFor(modelItem => item.DateEnd)
+                </td>
+                <td data-attr="category" data-value="@item.Category">
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td data-attr="tenantid" data-value="@item.TenantID">
+                    @Html.DisplayFor(modelItem => item.TenantID)
+                </td>
+                <td data-attr="tenantid" data-value="@item.JobKey">
+                    @Html.DisplayFor(modelItem => item.JobKey)
+                </td>
+<!--
+                <td data-attr="tenantid" data-value="item.previousFireTime">
+                    Html.DisplayFor(modelItem => item.previousFireTime)
+                </td>
+                <td data-attr="tenantid" data-value="item.nextFireTime">
+                    Html.DisplayFor(modelItem => item.nextFireTime)
+                </td>
+    -->
+                <td data-attr="tenantid" data-value="@item.strpreviousFireTime">
+                    @Html.DisplayFor(modelItem => item.strpreviousFireTime)
+                </td>
+                <td data-attr="tenantid" data-value="@item.strnextFireTime">
+                    @Html.DisplayFor(modelItem => item.strnextFireTime)
+                </td>
+                <td>
+                    <a href="@Url.Action("kill", "Jobs", new { nJobID = item.JobID })"
+                       class="btn btn-primary"
+                       data-toggle="tooltip"
+                       title="Stop">
+                        <i class="mdi mdi-file-pdf-box"></i>Stop
+                    </a>
+                </td>
+            </tr>
+            }
+        }
+    </table>
+</body>
+</html>

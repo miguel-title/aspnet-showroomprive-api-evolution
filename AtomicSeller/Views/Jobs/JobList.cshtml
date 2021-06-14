@@ -1,0 +1,335 @@
+﻿@model AtomicSeller.ViewModels.JobVMs
+
+@using AtomicSeller.Helpers
+@using AtomicSeller.Helpers.Navigation
+@using AtomicSeller.Helpers.Razor
+@using AtomicSeller.Helpers.Razor.HtmlExtensions
+@using AtomicJs.Resources
+
+@{
+    ViewBag.Title = new Local().TranslatedMessage("MITFAFquickProcessToolStripMenuItem");
+    ViewBag.ShowH2 = false;
+    ViewBag.PageCol = HtmlConsts.Dimens.DefaultPageCol;
+    ViewBag.PageColOffset = HtmlConsts.Dimens.DefaultPageColOffset;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <a class="btn btn-primary btn-create"
+       data-toggle="modal"
+       title="Create"
+       data-target="#myModal_create">
+        <i class="mdi mdi-file-pdf-box"></i>Create Job
+    </a>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                JOB NAME
+            </th>
+            <th>
+                DAILY STARTTIME
+            </th>
+            <th>
+                DAILY ENDTIME
+            </th>
+            <th>
+                PERIOD
+            </th>
+            <th>
+                REPEAT
+            </th>
+            <th>
+                ACTIVE
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Tenant ID
+            </th>
+            <th>
+                StoreKey
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.AtomicJobs)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => item.JobId)
+                <td data-attr="name" data-value="@item.JobName">
+                    @Html.DisplayFor(modelItem => item.JobName)
+                </td>
+                <td data-attr="start" data-value="@item.DailyStartTime">
+                    @Html.DisplayFor(modelItem => item.DailyStartTime)
+                </td>
+                <td data-attr="end" data-value="@item.DailyEndTime">
+                    @Html.DisplayFor(modelItem => item.DailyEndTime)
+                </td>
+                <td data-attr="period" data-value="@item.JobPeriod">
+                    @Html.DisplayFor(modelItem => item.JobPeriod)
+                </td>
+                <td data-attr="repeat" data-value="@item.Repeat">
+                    @Html.DisplayFor(modelItem => item.Repeat)
+                </td>
+                <td data-attr="enabled" data-value="@item.Enabled">
+                    @Html.DisplayFor(modelItem => item.Enabled)
+                </td>
+                <td data-attr="category" data-value="@item.Category">
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td data-attr="tenantid" data-value="@item.TenantId">
+                    @Html.DisplayFor(modelItem => item.TenantId)
+                </td>
+                <td data-attr="webservicestorekey" data-value="@item.WebserviceStoreKey">
+                    @Html.DisplayFor(modelItem => item.WebserviceStoreKey)
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", "Jobs", new { nJobID = item.JobId })"
+                       class="btn btn-primary"
+                       data-toggle="tooltip"
+                       title="Delete">
+                        <i class="mdi mdi-delete"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("JobEdit", "Jobs", new { JobID = item.JobId })"
+                        class="btn btn-primary"
+                        data-toggle="tooltip"
+                        title="JobEdit">
+                        <i class="mdi mdi-pencil"></i>
+                    </a>
+                    <button data-id="@item.JobId" class="btn btn-primary btn-edit"
+                        data-toggle="modal"
+                        title="Edit"
+                        data-target="#myModal">
+                        <i class="mdi mdi-pencil"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit Job</h4>
+                </div>
+                <form action="" method="get" id="form_edit">
+                    <div class="modal-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" />
+                        <div class="form-group">
+                            <label class="control-label">JOB NAME:</label>
+                            <input id="inpt_name" name="JobName" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">DAILY STARTTIME:</label>
+                            <input id="inpt_start" name="DailyStartTime" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">DAILY ENDTIME:</label>
+                            <input id="inpt_end" name="DailyEndTime" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">PERIOD:</label>
+                            <input id="inpt_period" name="JobPeriod" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">REPEAT:</label>
+                            <input id="inpt_repeat" name="Repeat" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ACTIVE:</label>
+                            <input id="inpt_enabled" name="Enabled" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Category:</label>
+                            <input id="inpt_category" name="Category" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tenant ID:</label>
+                            <input id="inpt_tenantid" name="TenantId" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">StoreKey:</label>
+                            <input id="inpt_webservicestorekey" name="WebserviceStoreKey" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="myModal_create" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Job</h4>
+                </div>
+                <form action="@Url.Action("Create", "Jobs")" method="post" id="form_create">
+                    <div class="modal-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" />
+                        <div class="form-group">
+                            <label class="control-label">JOB NAME:</label>
+                            <input id="create_inpt_name" name="JobName" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">DAILY STARTTIME:</label>
+                            <input id="create_inpt_start" name="DailyStartTime" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">DAILY ENDTIME:</label>
+                            <input id="create_inpt_end" name="DailyEndTime" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">PERIOD:</label>
+                            <input id="create_inpt_period" name="JobPeriod" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">REPEAT:</label>
+                            <input id="create_inpt_repeat" name="Repeat" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">ACTIVE:</label>
+                            <input id="create_inpt_enabled" name="Enabled" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Category:</label>
+                            <input id="create_inpt_category" name="Category" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tenant ID:</label>
+                            <input id="create_inpt_tenantid" name="TenantId" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">StoreKey:</label>
+                            <input id="create_inpt_webservicestorekey" name="WebserviceStoreKey" class="form-control" />
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('button.btn-edit').click(function () {
+
+            var jobId = $(this).attr('data-id')
+            var jobName = $(this).parents('tr').find('td[data-attr="name"]').attr('data-value')
+            var jobStart = $(this).parents('tr').find('td[data-attr="start"]').attr('data-value')
+            var jobEnd = $(this).parents('tr').find('td[data-attr="end"]').attr('data-value')
+            var jobPeriod = $(this).parents('tr').find('td[data-attr="period"]').attr('data-value')
+            var jobRepeat = $(this).parents('tr').find('td[data-attr="repeat"]').attr('data-value')
+            var jobEnabled = $(this).parents('tr').find('td[data-attr="enabled"]').attr('data-value')
+            var jobCategory = $(this).parents('tr').find('td[data-attr="category"]').attr('data-value')
+            var jobTenantID = $(this).parents('tr').find('td[data-attr="tenantid"]').attr('data-value')
+            var jobKey = $(this).parents('tr').find('td[data-attr="jobkey"]').attr('data-value')
+            var webserviceurl = $(this).parents('tr').find('td[data-attr="webserviceurl"]').attr('data-value')
+            var webservicetoken = $(this).parents('tr').find('td[data-attr="webservicetoken"]').attr('data-value')
+            var webservicekey = $(this).parents('tr').find('td[data-attr="webservicekey"]').attr('data-value')
+            var webservicestorekey = $(this).parents('tr').find('td[data-attr="webservicestorekey"]').attr('data-value')
+            var webservicecarrierservicekey = $(this).parents('tr').find('td[data-attr="webservicecarrierservicekey"]').attr('data-value')
+            var webservicewmskey = $(this).parents('tr').find('td[data-attr="webservicewmskey"]').attr('data-value')
+            var webservicereportingkey = $(this).parents('tr').find('td[data-attr="webservicereportingkey"]').attr('data-value')
+            var webserviceoutput = $(this).parents('tr').find('td[data-attr="webserviceoutput"]').attr('data-value')
+
+            $('input#inpt_name').val(jobName)
+            $('input#inpt_start').val(jobStart)
+            $('input#inpt_end').val(jobEnd)
+            $('input#inpt_period').val(jobPeriod)
+            $('input#inpt_repeat').val(jobRepeat)
+            $('input#inpt_enabled').val(jobEnabled)
+            $('input#inpt_category').val(jobCategory)
+            $('input#inpt_tenantid').val(jobTenantID)
+            $('input#inpt_jobkey').val(jobKey)
+            $('input#inpt_webserviceurl').val(webserviceurl)
+            $('input#inpt_webservicetoken').val(webservicetoken)
+            $('input#inpt_webservicekey').val(webservicekey)
+            $('input#inpt_webservicestorekey').val(webservicestorekey)
+            $('input#inpt_webservicecarrierservicekey').val(webservicecarrierservicekey)
+            $('input#inpt_webservicewmskey').val(webservicewmskey)
+            $('input#inpt_webservicereportingkey').val(webservicereportingkey)
+            $('input#inpt_webserviceoutput').val(webserviceoutput)
+
+            $('form#form_edit').attr('action', '/Jobs/Save/' + jobId)
+        })
+
+
+        $('a.btn-create').click(function () {
+            $('input#create_inpt_name').val("")
+            $('input#create_inpt_start').val("")
+            $('input#create_inpt_end').val("")
+            $('input#create_inpt_period').val("")
+            $('input#create_inpt_repeat').val("")
+            $('input#create_inpt_enabled').val("")
+            $('input#create_inpt_category').val("")
+            $('input#create_inpt_tenantid').val("")
+            $('input#create_inpt_jobkey').val("")
+            $('input#create_inpt_webservicetoken').val("")
+            $('input#create_inpt_webservicekey').val("")
+            $('input#create_inpt_webservicestorekey').val("")
+            $('input#create_inpt_webservicecarrierservicekey').val("")
+            $('input#create_inpt_webservicewmskey').val("")
+            $('input#create_inpt_webservicereportingkey').val("")
+            $('input#create_inpt_webserviceoutput').val("")
+
+        })
+    </script>
+</body>
+
+
+ 
+</html>

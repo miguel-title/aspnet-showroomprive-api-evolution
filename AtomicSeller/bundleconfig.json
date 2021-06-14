@@ -1,0 +1,40 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/app/bundle3d.js",
+    "inputFiles": [
+      "wwwroot/Resources/3d/js/bootstrap-datepicker.js",
+      "wwwroot/Resources/3d/js/bootstrap-datepicker.fr.min.js",
+      "wwwroot/Resources/3d/js/bootstrap-timepicker.js",
+      "wwwroot/Resources/3d/js/globalize/globalize.js",
+      "wwwroot/Resources/3d/js/globalize/cultures/globalize.culture.fr-FR.js",
+      "wwwroot/Resources/3d/js/jquery.maskedinput.min.js",
+      "wwwroot/Resources/3d/js/autoNumeric.min.js",
+      "wwwroot/Resources/3d/js/jquery.validate.min.js",
+      "wwwroot/Resources/3d/js/validation.js",
+      "wwwroot/Resources/3d/js/filebutton.js",
+      "wwwroot/Resources/3d/js/jquery.joyride-2.1.js",
+      "wwwroot/Resources/3d/js/jquery.cookie.js",
+      "wwwroot/Resources/3d/js/Select2/select2.js",
+      "wwwroot/Resources/3d/js/Chart.bundle.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/app/bundleJS.js",
+    "inputFiles": [
+      "wwwroot/Resources/js/lib/lib-utils.js",
+      "wwwroot/Resources/js/lib/lib-forms.js",
+      "wwwroot/Resources/js/lib/lib-metier.js",
+      "wwwroot/Resources/js/lib/component-confirm.js",
+      "wwwroot/Resources/js/lib/component-drawer.js",
+      "wwwroot/Resources/js/lib/component-form-dynamism.js",
+      "wwwroot/Resources/js/lib/component-password-strength.js",
+      "wwwroot/Resources/js/visite-guidee.js",
+      "wwwroot/Resources/js/script.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

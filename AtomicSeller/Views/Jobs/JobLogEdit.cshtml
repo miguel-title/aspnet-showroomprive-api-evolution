@@ -1,0 +1,51 @@
+﻿@model AtomicJs.Models.ASTJL.AtomicJobslog
+
+@using AtomicSeller.Helpers.Razor
+
+@{
+    ViewBag.Title = "JobsLog";
+    ViewBag.ShowH2 = false;
+    ViewBag.PageCol = HtmlConsts.Dimens.DefaultPageCol;
+    ViewBag.PageColOffset = HtmlConsts.Dimens.DefaultPageColOffset;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            LogID
+            @Html.DisplayFor(m => m.LogId)
+            JobID
+            @Html.DisplayFor(m => m.JobId)
+            name
+            @Html.DisplayFor(m => m.JobName)
+            Start
+            @Html.DisplayFor(m => m.DateStart)
+            End
+            @Html.DisplayFor(m => m.DateEnd)
+            ErrorMessage
+            @Html.DisplayFor(m => m.ErrorMessage)
+            ReturnCode
+            @Html.DisplayFor(m => m.ReturnCode)
+            tenantid
+            @Html.DisplayFor(m => m.TenantId)
+        </tr>
+    </table>
+
+
+
+    <script type="text/javascript">
+    </script>
+</body>
+
+
+
+</html>
+

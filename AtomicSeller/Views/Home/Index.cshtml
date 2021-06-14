@@ -1,0 +1,33 @@
+﻿@using AtomicSeller.Helpers
+@using AtomicSeller.Helpers.Razor
+@using AtomicSeller.Helpers.Razor.HtmlExtensions
+@using System.Globalization
+@using System.Threading
+
+@{
+    ViewBag.Title = new Local().TranslatedMessage("MITFAFquickProcessToolStripMenuItem");
+
+    ViewBag.ShowH2 = false;
+    ViewBag.PageCol = HtmlConsts.Dimens.DefaultPageCol;
+    ViewBag.PageColOffset = HtmlConsts.Dimens.DefaultPageColOffset;
+
+    //CultureInfo Culture;
+    //Culture = Thread.CurrentThread.CurrentUICulture;
+    //string CultureCode = Culture.Name;
+
+    string SiteName = "AtomicSeller";
+
+}
+
+<!-- Html.AntiForgeryToken() -->
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        @using (Html.PanelWrap(@SiteName))
+        {
+            <div class="panel-body">
+                <p>@{new Local().TranslatedMessage("MITFAFWELCOME"); } V2.12 </p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model AtomicJs.Models.ASTJL.AtomicJob
+
+@using AtomicSeller.Helpers
+@using AtomicSeller.Helpers.Navigation
+@using AtomicSeller.Helpers.Razor
+@using AtomicSeller.Helpers.Razor.HtmlExtensions
+@using AtomicJs.Resources
+
+@{
+    ViewBag.Title = new Local().TranslatedMessage("MITFAFquickProcessToolStripMenuItem");
+    ViewBag.ShowH2 = false;
+    ViewBag.PageCol = HtmlConsts.Dimens.DefaultPageCol;
+    ViewBag.PageColOffset = HtmlConsts.Dimens.DefaultPageColOffset;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <a  class="btn btn-primary btn-create"
+        data-toggle="modal"
+        title="Create"
+        data-target="#myModal_create">
+        <i class="mdi mdi-file-pdf-box"></i>Create Job
+    </a>
+    <hr />
+    <table>
+        <tr>
+            name
+            @Html.EditorFor(m => m.JobName)
+            Start
+            @Html.EditorFor(m => m.DailyStartTime)
+            end
+            @Html.EditorFor(m => m.DailyEndTime)
+            period
+            @Html.EditorFor(m => m.JobPeriod)
+            repeat
+            @Html.EditorFor(m => m.Repeat)
+            enabled
+            @Html.EditorFor(m => m.Enabled)
+            category
+            @Html.EditorFor(m => m.Category)
+            tenantid
+            @Html.EditorFor(m => m.TenantId)
+            webservicestorekey
+            @Html.EditorFor(m => m.WebserviceStoreKey)
+        </tr>
+    </table>
+        
+
+
+    <script type="text/javascript">
+    </script>
+</body>
+
+
+ 
+</html>
